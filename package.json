@@ -15,7 +15,8 @@
     "test":"",
     "tsc": "tsc",
     "f": "pm2 stop 'TQM' && pm2 delete 'TQM'",
-    "b":"webpack"
+    "b":"webpack && tsc && node dist",
+    "webpack":"webpack"
   },
   "repository": {
     "type": "git",

@@ -26,7 +26,7 @@ nunjucks.configure('views',{
 });
 
 app.use(express.static(path.join(__dirname,'public')));
-app.use(favicon(path.join(__dirname,'../src/public/res/','favicon.ico')));
+app.use(favicon(path.join(__dirname,'/views','favicon.ico')));
 
 app.get('/',(req:express.Request,res:express.Response) =>{
     res.render('index.html',{mainServer:'ppap'});
