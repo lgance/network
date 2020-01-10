@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
+
 module.exports = {
     // Mobile Test Configurtion 
     devServer:{
@@ -15,13 +16,20 @@ module.exports = {
     resolve:{
         modules:['node_modules'],
         extensions:['.scss','.css','.js'],
-      //   alias:{
-      //       "@gdlUtils":path.resolve(__dirname,'src/gdlUtils'),
-      //       "@userCSS":path.resolve(__dirname,'src/css/userCSS')
-      //   }
+        alias:{
+            "@gdlUtils":path.resolve(__dirname,'src/gdlUtils'),
+            "@userCSS":path.resolve(__dirname,'src/public/css'),
+            "@res":path.resolve(__dirname,'src/public/resource')
+        }
     },
     entry:{
-        index:['./src/public/js/tqm-test-module.js']
+        'public/index':'./src/public/js/tqm-test-module.js'
+        // index:['./src/public/js/tqm-test-module.js']
+        // 'public/index':[
+        //     "./src/public/js/tqm-test-module.js",
+        //     "./src/public/css/tqm-test-module.css"
+        // ],
+        
     }, // 기존파일
     module: {
     rules: [
@@ -35,30 +43,43 @@ module.exports = {
         use:[
             {
                 loader:'html-loader',
-                options:{minimize:true}
+                options:{minimize:false}
             }
         ]
       },
-      {
-        test:/\.scss$/,
-        use:[
-            // {
-            //     loader:MiniCssExtractPlugin.loader,
-            //     options:{
-            //         hmr:process.env.NODE_ENV === 'development',
-            //         reloadAll:true,
+    //   {
+    //     test:/\.scss$/,
+    //     use:[
+    //         {
+    //             loader:MiniCssExtractPlugin.loader,
+    //             options:{
+    //                 hmr:process.env.NODE_ENV === 'development',
+    //                 reloadAll:true,
   
-            //     }
-            // },
-            /* devMode ? 'style-loader' : 
-            process.env.NODE_ENV !== 'production' ? 'style-loader' :
-            MiniCssExtractPlugin.loader,
-            */
-            MiniCssExtractPlugin.loader,
-            // 'style-loader',
-            'css-loader',
-            'sass-loader',
-        ]
+    //             }
+    //         },
+    //         /* devMode ? 'style-loader' : 
+    //         process.env.NODE_ENV !== 'production' ? 'style-loader' :
+    //         MiniCssExtractPlugin.loader,
+    //         */
+    //         MiniCssExtractPlugin.loader,
+    //         // 'style-loader',
+    //         'css-loader',
+    //         'sass-loader',
+    //     ]
+    //    },
+       {
+          test:/\.css$/i,
+          use:[
+              {
+                loader:MiniCssExtractPlugin.loader,
+                options:{
+                    publicPath: '../',
+                }
+              },
+            //   'style-loader',
+             'css-loader'
+          ]
        },
       {
           test: /\.(ico|png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
@@ -95,10 +116,14 @@ module.exports = {
     
     plugins:[
         new HtmlWebPackPlugin({
-            template:'./src/views/index.html',
             favicon:'./src/public/resource/fav/favicon.ico',
-            filename:'./index.html',
+            filename:'public/resource/fav/favicon.ico',
             showErrors: true
+        }),
+        new HtmlWebPackPlugin({
+            template:'./src/views/index.html',
+            filename:'./views/index.html',
+            showErrors:true
         }),
         new MiniCssExtractPlugin({
             filename:'[name].css',
@@ -107,8 +132,10 @@ module.exports = {
     ],
     optimization:{},
     output:{
-        path:path.join(__dirname,'./dist/views'),
-        filename:'[name].js'
+       publicPath:'',
+       path:path.join(__dirname,'./dist'),
+       filename: '[name].js'
+      
     }, // 결과 파일
   
   }

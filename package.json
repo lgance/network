@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build":"webpack -p",
+    "build": "webpack -p",
     "start": "tsc && node dist",
     "restart": "pm2 restart 'TQM'",
     "dev": "nodemon --exec npm start",
@@ -12,11 +12,11 @@
     "stop": "pm2 stop 'TQM'",
     "delete": "pm2 delete 'TQM'",
     "log": "pm2 log 'TQM'",
-    "test":"",
+    "test": "",
     "tsc": "tsc",
     "f": "pm2 stop 'TQM' && pm2 delete 'TQM'",
-    "b":"webpack && tsc && node dist",
-    "webpack":"webpack"
+    "b": "webpack && tsc && node dist",
+    "webpack": "webpack"
   },
   "repository": {
     "type": "git",
