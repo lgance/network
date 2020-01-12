@@ -101,10 +101,6 @@ var Ajax = function(){
     }
     return Ajax
 }();
-
-
-
-
 var Browser = function(){
     'use strict'
     function Browser(){}
@@ -141,9 +137,6 @@ var Browser = function(){
     return Browser
 }();
 
-
-
-
 let tempObj = {
    "sample":"실패하는 개수를 확인합니다."
 };
@@ -164,19 +157,17 @@ var getStr = () =>{
 }
 
 setTimeout(()=>{
-     document.querySelector(".testDump").value = getStr();
+    //  document.querySelector(".testDump").value = getStr();
+    console.log('set Value');
 },1000);
 
 
-
+console.log('Task 생성전 ');
 /* Task Module  Check  */
-Task = (function(){
-
+const Task = (function(){
     /* use Interval Variable */
     let vpcTimer;
     let firstStart = 10000;
-    
-
     /* Temporary Variable to do remove variable  */
 
     let colCnt ;
@@ -210,15 +201,19 @@ Task = (function(){
     "kr1/natgw/external/comm":{}
 
    }
-  
+   function Task(){}
+
     let taskButtonList = [];
+
+    Task.getServerURL = function(){
+        return baseUrl;
+    }
     Task.allTestStart = function(){
 	taskButtonList.forEach(function(item,index){
 		item.click();
   	});
     };
-    function Task(){}
-
+   
     /* task Module Internal Function  */
     function createRow(obj,index){
 
@@ -765,3 +760,7 @@ Task = (function(){
     }
     return Task;
 })();
+
+
+
+console.log(Task.getServerURL());
