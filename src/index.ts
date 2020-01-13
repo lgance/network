@@ -11,6 +11,17 @@ import * as fs from "fs";
 
 import "dotenv/config";
 
+
+/** .env Properties
+  PORT=      // Server Listening Port Number
+  DB_HOST='' // mySQL DataBase HOST 
+  DB_NAME='' // mySQL DataBase Name
+  DB_PORT='' // mySQL DataBase PORT
+  DB_USERNAME='' // mySQL DataBase USERNAME
+  DB_PASSWORD = '' // mySQL DataBase PassWord
+ */
+
+
 const app = express();
 
 interface TQMError extends Error {
@@ -33,7 +44,7 @@ app.get("/", (req: express.Request, res: express.Response) => {
   res.render("index.html", { mainServer: "ppap" });
 });
 
-app.listen(app.get("port"), () => {
+app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
 
@@ -66,7 +77,7 @@ app.use(
 );
 
 /* PM2 Log Flush Schedule */
-cron.schedule("* * * * 1", () => {
+cron.schedule("30 1 * * 1", () => {
   console.log("Log Flush");
   const ls = spawn("pm2", ["flush"]);
   ls.stdout.on("data", data => {

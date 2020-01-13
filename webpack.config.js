@@ -136,10 +136,10 @@ module.exports = {
                 from:'**/*',
                 to:'./resource'
             },
-            {
-                from:'./src/views/favicon.ico',
-                to:'./'
-            },
+            // {
+            //     from:'./src/views/favicon.ico',
+            //     to:'./'
+            // },
         ])
     ],
     optimization:{},
