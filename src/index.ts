@@ -75,7 +75,6 @@ app.use(
     });
   }
 );
-
 /* PM2 Log Flush Schedule */
 cron.schedule("30 1 * * 1", () => {
   console.log("Log Flush");

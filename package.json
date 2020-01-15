@@ -5,17 +5,17 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack -p",
-    "start": "tsc && node dist",
-    "restart": "pm2 restart 'TQM'",
-    "dev": "nodemon --exec npm start",
-    "deploy": "tsc && pm2 start dist --name 'TQM'",
-    "stop": "pm2 stop 'TQM'",
-    "delete": "pm2 delete 'TQM'",
-    "log": "pm2 log 'TQM'",
+    "nms-dev":"webpack && tsc && node dist",
+    "dev":"nodemon --exec npm run nms-dev",
+    "restart": "pm2 restart 'NMS'",
+    "deploy": "webpack && tsc && pm2 start dist --name 'NMS'",
+    "stop": "pm2 stop 'NMS'",
+    "delete": "pm2 delete 'NMS'",
+    "log": "pm2 log 'NMS'",
     "test": "",
     "tsc": "tsc",
-    "f": "pm2 stop 'TQM' && pm2 delete 'TQM'",
-    "b": "webpack && tsc && node dist",
+    "f": "pm2 stop 'NMS' && pm2 delete 'NMS'",
+    
     "webpack": "webpack"
   },
   "repository": {
