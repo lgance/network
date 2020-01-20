@@ -55,7 +55,7 @@ class App {
     nunjucks.configure('dist/public/views',{
       autoescape:true,
       express:this.app
-    })
+    });
     this.app.use(express.static(path.join(__dirname,"public")));
     this.app.use(favicon(path.join(__dirname,"/public/resource/fav","favicon.ico")));
 
