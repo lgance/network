@@ -14,6 +14,8 @@
     "log": "pm2 log 'NMS'",
     "abcde": "tsc && node dist",
     "be-dev": "nodemon --exec npm run abcde",
+    "fe":"webpack && node dist",
+    "fe-dev":"nodemon --exec npm run fe",
     "tsc": "tsc",
     "f": "pm2 stop 'NMS' && pm2 delete 'NMS'",
     "webpack": "webpack"
