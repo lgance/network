@@ -19,7 +19,6 @@ class IndexController implements Controller {
       {
         mainServer:'pppppapp'
       });
-
   }
 }
 export default IndexController;
