@@ -1,34 +1,37 @@
-
+const path = require('path');
 const FormData = require('form-data');
 const fs = require('fs');
 const axios = require('axios');
 
 /** define config variable  */
-const uploadFilePath = 'test-png.png';
+const uploadFilePath = path.resolve(__dirname,'test-png2.png');
 const uploadUrl = 'http://127.0.0.1/upload';
+const returnTimeout = 5000;
 
+sendReport(uploadUrl,uploadFilePath)
+.then(res=>{
+  console.log(res);
+})
+.catch(err=>{
+  console.error(err);
+})
 
-(async ()=>{
-  sendReport(uploadUrl,uploadFilePath);
-})();
 
 function sendReport(uploadUrl,uploadFilePath){
-    const stream = fs.createReadStream(uploadFilePath);
-    const form = new FormData();
-
-    form.append('dump',stream);
-
-    
-    axios.post(uploadUrl,form,{
-      headers:form.getHeaders(),
-      // timeout:9000
-    })
-    .then(res=>console.log(`완료 ${res.data}`))
-    .catch(err=>{
-      console.log('에러');
-      console.log(err.message);
-    })
-       
+  return new Promise((resolve,reject)=>{
+    if(fs.existsSync(uploadFilePath)){
+      const stream = fs.createReadStream(uploadFilePath);
+      const form = new FormData();
+      form.append('dump',stream);
+      axios.post(uploadUrl,form,{
+        headers:form.getHeaders(),
+        timeout:returnTimeout
+      })
+      .then(res=>{resolve(res.data)})
+      .catch(err=>{reject(false);})
+    }
+    else{
+      reject('not Exist File');
+    }
+  })
 }
-
-

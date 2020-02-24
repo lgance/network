@@ -22,7 +22,6 @@ const storage = multer.diskStorage({
 
 const upload = multer({storage:storage}).array('dump');
 
-
 class UploadController implements Controller {
   public path='/upload';
   public router = express.Router();
