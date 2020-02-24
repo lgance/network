@@ -10,6 +10,7 @@ class HttpException extends Error {
   }
 }
 
+/** Internal Server Error */
 
 function errorMiddleware(error:HttpException,req:Request,res:Response,next:NextFunction){
   const status = error.status || 500;

@@ -20,7 +20,8 @@ const storage = multer.diskStorage({
   }
 })
 
-const upload = multer({storage:storage});
+const upload = multer({storage:storage}).array('dump');
+
 
 class UploadController implements Controller {
   public path='/upload';
@@ -31,7 +32,8 @@ class UploadController implements Controller {
   }
 
   private initializeRoutes(){
-    this.router.post(this.path,upload.array('dump'),this.uploadControllerIndexPost);
+    // this.router.post(this.path,this.uploadControllerIndexPost);
+    this.router.post(this.path,this.uploadControllerIndexPost);
     this.router.get(this.path,this.uploadControllerIndex);
   }
 
@@ -42,19 +44,23 @@ class UploadController implements Controller {
 
   private uploadControllerIndexPost = async(req:express.Request,res:express.Response,next:express.NextFunction)=>{
       console.log(`[FILES] `);
-      
-      let _files:string='';
-
-      function isFile(data:{[fieldname: string]: Express.Multer.File[]} | Express.Multer.File[]) : data is Express.Multer.File[] {
-         return Array.isArray(data);
-      }
-           
-      if(isFile(req.files)){
-          req.files.forEach((item:Express.Multer.File,index:number)=>{
-              _files = _files.concat(`${item.originalname} `);
-          });
-      }
-      res.send(`Upload Complete is  [${_files}]`);
+      upload(req,res,function(err){
+          if(err){
+            console.log(err);
+            return res.send('Upload Error');
+          }
+          console.log(req.files);
+          let _files:string='';
+          function isFile(data:{[fieldname: string]: Express.Multer.File[]} | Express.Multer.File[]) : data is Express.Multer.File[] {
+             return Array.isArray(data);
+          }
+          if(isFile(req.files)){
+              req.files.forEach((item:Express.Multer.File,index:number)=>{
+                  _files = _files.concat(`${item.originalname} `);
+              });
+          }
+          res.send(`Upload Complete is  [${_files}]`);
+      });
   }
 }
 export default UploadController;
