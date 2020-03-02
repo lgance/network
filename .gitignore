@@ -106,3 +106,7 @@ dist
 
 # temp file
 test.js
+test.sh
+dump-*
+test-pdf.pdf
+test-png.png

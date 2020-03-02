@@ -1,3 +1,4 @@
 {
-  "ext":"css json ts tsx js" 
+  "ext":"css json ts tsx js html",
+  "watch":["src/"]
 }
