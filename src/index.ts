@@ -17,7 +17,7 @@ interface TQMError extends Error {
   status: number;
   data?: any;
 }
-const port = process.env.PORT || 9428;
+const port = process.env.PORT || 80;
 app.use(cors());
 app.set("port", port);
 
