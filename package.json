@@ -19,7 +19,8 @@
     "tsc": "tsc",
     "webpack": "webpack",
     "build": "webpack -p",
-    "ready": "tsc && webpack"
+    "ready": "tsc && webpack",
+    "list":"pm2 list"
   },
   "repository": {
     "type": "git",
