@@ -58,7 +58,7 @@ class App {
 
     nunjucks.configure("dist/public/views", {
       autoescape: true,
-      express: this.app
+      express: this.app,
     });
     this.app.use(express.static(path.join(__dirname, "public")));
     this.app.use(
@@ -69,7 +69,7 @@ class App {
     cron.schedule("30 1 * * 1", () => {
       console.log("Log Flush");
       const ls = spawn("pm2", ["flush"]);
-      ls.stdout.on("data", data => {
+      ls.stdout.on("data", (data) => {
         console.log(`stdout : ${data}`);
         console.log(moment().format("MMMM Do YYYY,h:mm:ss a"));
       });
@@ -82,7 +82,7 @@ class App {
     this.app.use(errorMiddleware);
   }
   private initializeControllers(controllers: Controller[]) {
-    controllers.forEach(controller => {
+    controllers.forEach((controller) => {
       this.app.use("/", controller.router);
     });
   }
