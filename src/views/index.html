@@ -6,20 +6,18 @@
    
   <body>
     <div id="server_addr" style="display:none">{{mainServer}}</div>
-    <main>
-      <header>
-        head
-      </header>
+    
+    {% extends "./common/parent.html" %}
 
-      <article>
-        <section>
-          section 1
-        </section>
+    {% block content %}    
+        This is Change Content 
+    {% endblock %}
 
-        <section>
-          section 2
-        </section>
-      </article>
-    </main>
   </body>
+
+  <script> 
+   var mainServer = document.getElementById("server_addr");
+   console.warn(mainServer.innerText);
+
+  </script>
 </html>

@@ -35,41 +35,18 @@ module.exports = {
     }, // 기존파일
     module: {
     rules: [
-      // {   ts-loader 는 tsc로 대체 부분 빌드 
-      //   test: /\.ts$/,
-      //           use: ['ts-loader'],
-      //           exclude:["/node_modules"]
-      // },
-      {
-        test:/\.html$/, // html loader
-        use:[
-            {
-                loader:'html-loader',
-                options:{minimize:false}
-            }
-        ]
-      },
+     
+
+
     //   {
-    //     test:/\.scss$/,
+    //     test:/\.html$/, // html loader
     //     use:[
     //         {
-    //             loader:MiniCssExtractPlugin.loader,
-    //             options:{
-    //                 hmr:process.env.NODE_ENV === 'development',
-    //                 reloadAll:true,
-  
-    //             }
-    //         },
-    //         /* devMode ? 'style-loader' : 
-    //         process.env.NODE_ENV !== 'production' ? 'style-loader' :
-    //         MiniCssExtractPlugin.loader,
-    //         */
-    //         MiniCssExtractPlugin.loader,
-    //         // 'style-loader',
-    //         'css-loader',
-    //         'sass-loader',
+    //             loader:'html-loader',
+    //             options:{minimize:false}
+    //         }
     //     ]
-    //    },
+    //   },
        {
           test:/\.css$/i,
           use:[
@@ -97,24 +74,6 @@ module.exports = {
         test: /\.ico$/,
         loader: 'file-loader'
      }
-            // favicon/icon-line.ico
-            // {
-            //     // test:/\.(png|svg|jpg|gif|ico)$/,
-            //     use:[
-            //         {
-            //             loader:'file-loader',
-            //             options:{
-            //             name:'[hash].[ext]', // [path][name].[ext]?[hash] result : path/to/file.png?e43b20c069c4a01867c31e98cbce33c9
-            //             outputPath:'res',
-            //             publicPath:'res'
-            //                 // name:'[hash].[ext]', // [path][name].[ext]?[hash] result : path/to/file.png?e43b20c069c4a01867c31e98cbce33c9
-            //                 // outputPath:'res/images',
-            //                 // publicPath:'res/images'
-            //             }
-            //         }
-            //     ]
-            // },
-           
     ]
     }, // 기존파일에 적용할 모듈 
     
@@ -126,6 +85,14 @@ module.exports = {
             // favicon:'./src/views/favicon.ico',
             showErrors:true
         }),
+
+        new HtmlWebPackPlugin({
+            template:'./src/views/common/parent.html',
+            filename:'./views/common/parent.html',
+            inject:false,            
+            showErrors:true
+        }),
+
         new MiniCssExtractPlugin({
             filename:'[name].css',
             chunkFilename:'[id].css'
