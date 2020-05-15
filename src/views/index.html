@@ -7,12 +7,11 @@
   <body>
     <div id="server_addr" style="display:none">{{mainServer}}</div>
     
-    {% extends "./common/parent.html" %}
+    {% include "parent.html" ignore missing %}
 
     {% block content %}    
-        This is Change Content 
+        This is Index.html 
     {% endblock %}
-
   </body>
 
   <script> 
@@ -21,3 +20,4 @@
 
   </script>
 </html>
+  

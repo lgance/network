@@ -78,21 +78,19 @@ module.exports = {
     }, // 기존파일에 적용할 모듈 
     
     plugins:[
-        
-        new HtmlWebPackPlugin({
-            template:'./src/views/index.html',
-            filename:'./views/index.html',
-            // favicon:'./src/views/favicon.ico',
-            showErrors:true
-        }),
-
         new HtmlWebPackPlugin({
             template:'./src/views/common/parent.html',
             filename:'./views/common/parent.html',
             inject:false,            
             showErrors:true
         }),
-
+        new HtmlWebPackPlugin({
+            template:'./src/views/index.html',
+            filename:'./views/index.html',
+            // favicon:'./src/views/favicon.ico',
+            showErrors:true,
+            inject:true,
+        }),
         new MiniCssExtractPlugin({
             filename:'[name].css',
             chunkFilename:'[id].css'

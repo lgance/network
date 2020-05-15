@@ -15,6 +15,7 @@ class IndexController implements Controller {
   }
 
   private dashboardIndex = async (req:express.Request,res:express.Response)=>{
+    console.log('render for index.html');
       res.render('index.html',
       {
         mainServer:'pppppapp'
