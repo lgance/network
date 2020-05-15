@@ -2,7 +2,7 @@
 
 ## Test Automation DashBoard Prototype
 
-테스트 자동화를 위한 대쉬보드 프로토타입입니다. 
+테스트 자동화를 위한 대쉬보드 및 Node.js 샘플 입니다.
 
 # Package.json
 
