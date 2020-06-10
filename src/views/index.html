@@ -3,20 +3,20 @@
   <head>
     <title>Network Health Check</title>
   </head>
-   
+    
   <body>
     <div id="server_addr" style="display:none">{{mainServer}}</div>
-    
+    <div id="hostname"> {{mainServer}} </div>
     {% include "parent.html" ignore missing %}
 
     {% block content %}    
-        This is Index.html 
+       
     {% endblock %}
   </body>
 
   <script> 
-   var mainServer = document.getElementById("server_addr");
-   console.warn(mainServer.innerText);
+   var mainServer = document.getElementById("hostname");
+   console.warn(mainServer.innerText); 
 
   </script>
 </html>

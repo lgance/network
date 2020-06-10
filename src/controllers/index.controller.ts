@@ -1,10 +1,11 @@
 import * as express from 'express';
 import Controller from '../interface/controller.interface'
 
+import * as os from 'os';
+
 class IndexController implements Controller {
   public path='/';
   public router = express.Router();
-
 
   constructor(){
     this.initializeRoutes();
@@ -15,10 +16,11 @@ class IndexController implements Controller {
   }
 
   private dashboardIndex = async (req:express.Request,res:express.Response)=>{
+    let hostname=os.hostname();
     console.log('render for index.html');
       res.render('index.html',
       {
-        mainServer:'pppppapp'
+        mainServer:hostname
       });
   }
 }

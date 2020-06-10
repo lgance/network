@@ -16,14 +16,14 @@ import { spawn, exec } from "child_process";
 import errorMiddleware from "./middleware/error.middleware";
 import exceptionController from "./middleware/controller.excpetion.middleware";
 
-// /** .env Properties
-//   PORT=      // Server Listening Port Number
-//   DB_HOST='' // mySQL DataBase HOST
-//   DB_NAME='' // mySQL DataBase Name
-//   DB_PORT='' // mySQL DataBase PORT
-//   DB_USERNAME='' // mySQL DataBase USERNAME
-//   DB_PASSWORD = '' // mySQL DataBase PassWord
-//  */
+/** .env Properties
+ * ! PORT=      // Server Listening Port Number
+ * * DB_HOST='' // mySQL DataBase HOST
+ * * DB_NAME='' // mySQL DataBase Name
+ * ! DB_PORT='' // mySQL DataBase PORT
+ * * DB_USERNAME='' // mySQL DataBase USERNAME
+ * ! DB_PASSWORD = '' // mySQL DataBase PassWord
+*/
 
 interface TQMError extends Error {
   status: number;
@@ -65,7 +65,7 @@ class App {
       favicon(path.join(__dirname, "/public/resource/fav", "favicon.ico"))
     );
 
-    /* PM2 Log Flush Schedule */
+   // ? Pm2 log Flush  -> Delete All Log 
     cron.schedule("30 1 * * 1", () => {
       console.log("Log Flush");
       const ls = spawn("pm2", ["flush"]);
@@ -76,9 +76,10 @@ class App {
     });
   }
   private initializeErrorHandling() {
-    /** express 4xx middleware */
+    // ? express 4xx middleware 
     this.app.use(exceptionController);
-    /** express Server error handling middle ware - Internal Server Error 500  */
+
+    // ? express Server error handling middle ware - Internal Server Error 500  
     this.app.use(errorMiddleware);
   }
   private initializeControllers(controllers: Controller[]) {
@@ -87,6 +88,7 @@ class App {
     });
   }
 
+  // ! Server Listen Port 
   public listen() {
     this.app.listen(this.port, () => {
       console.log(`Example app listening on port ${this.port}`);
