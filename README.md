@@ -1,5 +1,9 @@
 # network
 
+
+** 현재는 테스트용도로만 사용 -> 프로젝트 이관
+
+
 ## Test Automation DashBoard Prototype
 
 테스트 자동화를 위한 대쉬보드 및 Node.js 샘플 입니다.
