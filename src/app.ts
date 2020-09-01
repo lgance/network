@@ -14,7 +14,7 @@ import * as cookieParser from "cookie-parser";
 import { spawn, exec } from "child_process";
 
 import errorMiddleware from "./middleware/error.middleware";
-import exceptionController from "./middleware/controller.excpetion.middleware";
+import exceptionController from "./middleware/controller.exception.middleware";
 
 /** .env Properties
  * ! PORT=      // Server Listening Port Number
@@ -25,7 +25,7 @@ import exceptionController from "./middleware/controller.excpetion.middleware";
  * ! DB_PASSWORD = '' // mySQL DataBase PassWord
 */
 
-interface TQMError extends Error {
+interface IError extends Error {
   status: number;
   data?: any;
 }
