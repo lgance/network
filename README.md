@@ -46,10 +46,3 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 ## Acknowledgments
 
 * Thank you for reading.
-
-## Todo
-* Automation Test Case Merge
-* Front-End Project 분리 (ex: React, Angular, Vue )
-
-
-
